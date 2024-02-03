@@ -1,0 +1,10 @@
+[user]
+	email = horto202@umn.edu
+	name = Nick Horton
+[core]
+	editor = vscode
+[init]
+	defaultBranch = main
+[credential "https://github.umn.edu"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

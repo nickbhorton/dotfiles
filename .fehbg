@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-fill '/home/nick/.local/share/wallpaper_images/bg2.jpg' 
