@@ -19,14 +19,22 @@ clr='\[\033[00m\]'      # Reset
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 # adding potentially to short aliases
+
 alias c='clear'
 alias v='nvim'
+
+# git stuff
 alias gs='git status'
+alias gl='git log'
 alias ga='git add'
 alias gaa='git add --all'
 alias gp='git pull'
+alias gb='git branch -a'
+
+
 alias cb='cd build && make && cd ..'
 alias todo='nvim ~/.todo'
+alias bashrc='code ~/.bashrc'
 
 alias make='make -j15'
 
@@ -77,13 +85,13 @@ function init_cpp() {
 }
 
 alias mktex="render_and_view_tex $1"
-alias pdfv='mupdf -r 226'${1}'.pdf'
+alias pdfv='mupdf -r 226'${1}'.pbludf'
 alias texinit='init_tex '${1}
 alias newcpp='init_cpp'
 
-alias dotgit='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
-PS1=${blu}'\u=>'${pur}'\w'${wht}'>= '
+source /usr/share/git/completion/git-prompt.sh
+PS1=${grn}'\u'${cyn}'::'${wht}'\w'${red}'$(__git_ps1 "[%s]")'${wht}'=> '
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
@@ -103,3 +111,4 @@ if [[ $term = "st" ]]; then
 fi
 
 . "$HOME/.cargo/env"
+
