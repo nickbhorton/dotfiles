@@ -30,6 +30,7 @@ alias ga='git add'
 alias gaa='git add --all'
 alias gp='git pull'
 alias gb='git branch -a'
+alias gc='git commit'
 
 
 alias cb='cd build && make && cd ..'
@@ -76,11 +77,12 @@ function init_tex() {
 
 function init_cpp() {
     mkdir ./src;
-    mkdir ./tests;
     mkdir ./include;
-    cp /home/nick/.local/share/cpp_start_files/Makefile ./Makefile;
+    cp /home/nick/.local/share/cpp_start_files/Makefile3 ./Makefile;
     cp /home/nick/.local/share/cpp_start_files/doctest.h ./include/doctest.h;
-    cp /home/nick/.local/share/cpp_start_files/test.cpp ./tests/test.cc;
+    cp /home/nick/.local/share/cpp_start_files/test.cpp ./src/test.cc;
+    cp /home/nick/.local/share/cpp_start_files/lib.cc  ./src/lib.cc;
+    cp /home/nick/.local/share/cpp_start_files/lib.h  ./include/lib.h;
     cp /home/nick/.local/share/cpp_start_files/main.cpp ./src/main.cc;
 }
 
@@ -88,6 +90,21 @@ alias mktex="render_and_view_tex $1"
 alias pdfv='mupdf -r 226'${1}'.pbludf'
 alias texinit='init_tex '${1}
 alias newcpp='init_cpp'
+
+function makeheader() {
+    if [ $# -lt 1 ]; then
+        echo "command needs a file name arguemnt"
+    else
+        hdr_str="${1^^}_HEADER"
+        file="$1.h"
+        touch $file
+        echo "#ifndef $hdr_str" >> $file
+        echo "#define $hdr_str" >> $file
+        echo "#endif" >> $file
+    fi
+}
+
+alias mkhdr='makeheader'
 
 
 source /usr/share/git/completion/git-prompt.sh
