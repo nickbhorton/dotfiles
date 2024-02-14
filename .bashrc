@@ -26,6 +26,7 @@ alias v='nvim'
 # git stuff
 alias gs='git status'
 alias gl='git log'
+alias gt='git log --graph --decorate --pretty=oneline --abbrev-commit --all'
 alias ga='git add'
 alias gaa='git add --all'
 alias gp='git pull'
@@ -40,6 +41,7 @@ alias bashrc='code ~/.bashrc'
 alias make='make -j15'
 
 alias sound='alsamixer'
+alias r='ranger'
 
 alias chk-bat='echo "power: " && cat /sys/class/power_supply/BAT1/charge_now && echo "full power:" && cat /sys/class/power_supply/BAT1/charge_full'
 
@@ -78,8 +80,9 @@ function init_tex() {
 function init_cpp() {
     mkdir ./src;
     mkdir ./include;
+    mkdir ./ext
     cp /home/nick/.local/share/cpp_start_files/Makefile3 ./Makefile;
-    cp /home/nick/.local/share/cpp_start_files/doctest.h ./include/doctest.h;
+    cp /home/nick/.local/share/cpp_start_files/doctest.h ./ext/doctest.h;
     cp /home/nick/.local/share/cpp_start_files/test.cpp ./src/test.cc;
     cp /home/nick/.local/share/cpp_start_files/lib.cc  ./src/lib.cc;
     cp /home/nick/.local/share/cpp_start_files/lib.h  ./include/lib.h;
