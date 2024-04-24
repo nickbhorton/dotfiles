@@ -2,6 +2,13 @@
 # ~/.bashrc
 #
 
+# coloring ls
+eval "$(dircolors -b /etc/DIR_COLORS)"
+
+# ssh to my server
+alias nyxroot='ssh -i ~/.ssh/nyx_ed25519_key -p2222 root@nyx'
+alias nyx='ssh -i ~/.ssh/nyx_ed25519_key -p2222 nick@nyx'
+
 # colors
 blk='\[\033[01;30m\]'   # Black
 red='\[\033[01;31m\]'   # Red
@@ -18,10 +25,13 @@ clr='\[\033[00m\]'      # Reset
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-# adding potentially to short aliases
 
-alias c='clear'
 alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
+
+alias t='tmux'
+alias ta='tmux attach -t'
 
 # git stuff
 alias gs='git status'
@@ -34,48 +44,16 @@ alias gb='git branch -a'
 alias gc='git commit'
 
 
-alias cb='cd build && make && cd ..'
 alias todo='nvim ~/.todo'
-alias bashrc='code ~/.bashrc'
-
-alias make='make -j15'
+alias bashrc='v ~/.bashrc'
+alias kittyrc='v ~/.config/kitty/kitty.conf'
+alias vimrc='v ~/.config/nvim/init.lua'
+alias tmuxrc='v ~/.tmux.conf'
 
 alias sound='alsamixer'
-alias r='ranger'
 
 alias chk-bat='echo "power: " && cat /sys/class/power_supply/BAT1/charge_now && echo "full power:" && cat /sys/class/power_supply/BAT1/charge_full'
-
-function render_tex() {
-    latexmk -pdf ${1};
-}
-function clean_tex_quiet() {
-    latexmk -c 1> /dev/null;
-}
-function view_pdf() {
-    echo "$1 =>";
-    echo "    $(echo $1 | sed 's/.tex/.pdf/')";
-    mupdf -r 226 $(echo $1 | sed 's/.tex/.pdf/');
-}
-function render_and_view_tex() {
-    render_tex $1;
-    clean_tex_quiet $1;
-    view_pdf $1;
-}
-function init_tex() {
-    filename="$1.tex";
-    echo "filename: " $filename;
-    echo '\documentclass{article}' > $filename;
-    echo '\usepackage[margin=1.0in]{geometry}' >> $filename;
-    echo '\usepackage{amsfonts}' >> $filename;
-    echo '\usepackage{amsmath}' >> $filename;
-    echo '' >> $filename;
-    name_string_with_spaces=${1//_/ } 
-    echo "\title{${name_string_with_spaces^}}" >> $filename;
-    echo "\begin{document}" >> $filename;
-    echo "\maketitle" >> $filename;
-    echo "\end{document}" >> $filename;
-    
-}
+alias clear='echo "use cntrl-l bruh please"'
 
 function init_cpp() {
     mkdir ./src;
@@ -89,10 +67,8 @@ function init_cpp() {
     cp /home/nick/.local/share/cpp_start_files/main.cpp ./src/main.cc;
 }
 
-alias mktex="render_and_view_tex $1"
 alias pdfv='mupdf -r 226'${1}'.pbludf'
-alias texinit='init_tex '${1}
-alias newcpp='init_cpp'
+# alias newcpp='init_cpp'
 
 function makeheader() {
     if [ $# -lt 1 ]; then
@@ -109,9 +85,8 @@ function makeheader() {
 
 alias mkhdr='makeheader'
 
-
 source /usr/share/git/completion/git-prompt.sh
-PS1=${grn}'\u'${cyn}'::'${wht}'\w'${red}'$(__git_ps1 "[%s]")'${wht}'=> '
+PS1=${grn}'\u'${cyn}'::'${wht}'\w'${red}'$(__git_ps1 "[%.30s]")'${wht}'=> '
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
@@ -127,8 +102,12 @@ eval $(opam env)
 term="$(cat /proc/$PPID/comm)"
 
 if [[ $term = "st" ]]; then
-	transset-df "0.8" --id "$WINDOWID" >/dev/null
+	transset-df "1.0" --id "$WINDOWID" >/dev/null
 fi
 
 . "$HOME/.cargo/env"
+
+PATH=$PATH:$HOME/.local/bin
+export NICK_OS_TARGET=i686-elf
+export NICK_OS_SYSROOT=$HOME/nickos/sysroot
 

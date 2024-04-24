@@ -2,7 +2,7 @@
 	email = nickkbhorton@gmail.com
 	name = Nick Horton
 [core]
-	editor = vscode
+	editor = nvim 
 [init]
 	defaultBranch = main
 [credential]
