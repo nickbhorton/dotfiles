@@ -27,7 +27,6 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
 alias v='nvim'
-alias vi='nvim'
 alias vim='nvim'
 
 alias t='tmux'

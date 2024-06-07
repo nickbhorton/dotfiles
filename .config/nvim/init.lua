@@ -21,6 +21,8 @@ vim.keymap.set("n", "<leader>wh", "<C-w>h")
 vim.keymap.set("n", "<leader>wl", "<C-w>l")
 vim.keymap.set("n", "<leader>wq", "<C-w>q")
 
+-- vim.keymap.set("v", "<leader>a", ":'<,'>:w !festival --tts<CR>")
+
 
 -- install lazy from github and then set local variables
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
