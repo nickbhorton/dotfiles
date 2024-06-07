@@ -51,38 +51,9 @@ alias tmuxrc='v ~/.tmux.conf'
 
 alias sound='alsamixer'
 
-alias chk-bat='echo "power: " && cat /sys/class/power_supply/BAT1/charge_now && echo "full power:" && cat /sys/class/power_supply/BAT1/charge_full'
 alias clear='echo "use cntrl-l bruh please"'
 
-function init_cpp() {
-    mkdir ./src;
-    mkdir ./include;
-    mkdir ./ext
-    cp /home/nick/.local/share/cpp_start_files/Makefile3 ./Makefile;
-    cp /home/nick/.local/share/cpp_start_files/doctest.h ./ext/doctest.h;
-    cp /home/nick/.local/share/cpp_start_files/test.cpp ./src/test.cc;
-    cp /home/nick/.local/share/cpp_start_files/lib.cc  ./src/lib.cc;
-    cp /home/nick/.local/share/cpp_start_files/lib.h  ./include/lib.h;
-    cp /home/nick/.local/share/cpp_start_files/main.cpp ./src/main.cc;
-}
-
 alias pdfv='mupdf -r 226'${1}'.pbludf'
-# alias newcpp='init_cpp'
-
-function makeheader() {
-    if [ $# -lt 1 ]; then
-        echo "command needs a file name arguemnt"
-    else
-        hdr_str="${1^^}_HEADER"
-        file="$1.h"
-        touch $file
-        echo "#ifndef $hdr_str" >> $file
-        echo "#define $hdr_str" >> $file
-        echo "#endif" >> $file
-    fi
-}
-
-alias mkhdr='makeheader'
 
 source /usr/share/git/completion/git-prompt.sh
 PS1=${grn}'\u'${cyn}'::'${wht}'\w'${red}'$(__git_ps1 "[%.30s]")'${wht}'=> '
