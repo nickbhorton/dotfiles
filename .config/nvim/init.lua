@@ -5,7 +5,6 @@ vim.cmd("set shiftwidth=4")
 vim.g.mapleader = " "
 
 vim.keymap.set("i", "jj", "<Esc>")
-vim.keymap.set("n", "<leader>jj", "<Esc>")
 vim.keymap.set("n", "<leader>s", ":w<CR>")
 vim.keymap.set("n", "<leader>qq", ":qa<CR>")
 vim.keymap.set("n", "<leader> ", ":")
@@ -126,7 +125,7 @@ vim.cmd("colorscheme kanagawa-wave")
 -- setup treesitter
 local configs = require("nvim-treesitter.configs")
 configs.setup({
-    ensure_installed = { "python", "doxygen", "gitcommit", "comment", "make", "cpp", "asm", "c", "lua", "vim", "vimdoc", "html", "css", "javascript", "typescript", "regex", "bash", "markdown", "markdown_inline" },
+    ensure_installed = { "glsl", "rust", "python", "doxygen", "gitcommit", "comment", "make", "cpp", "asm", "c", "lua", "vim", "vimdoc", "html", "css", "javascript", "typescript", "regex", "bash", "markdown", "markdown_inline" },
     sync_install = false,
     highlight = { enable = true },
     indent = { enable = true },
@@ -177,7 +176,7 @@ vim.keymap.set("n", "<leader>nc", ":Neotree filesystem close<CR>")
 -- setup mason
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "pyright", "asm_lsp", "lua_ls", "clangd", "html", "cssls", "tsserver" }
+    ensure_installed = { "pyright", "asm_lsp", "lua_ls", "clangd", "html", "cssls", "tsserver", "rust_analyzer" }
 })
 
 
@@ -231,6 +230,9 @@ lspconfig.lua_ls.setup({
     capabilities = capabilities
 })
 lspconfig.clangd.setup({
+    capabilities = capabilities
+})
+lspconfig.rust_analyzer.setup({
     capabilities = capabilities
 })
 lspconfig.html.setup({
